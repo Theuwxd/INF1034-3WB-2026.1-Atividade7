@@ -4,21 +4,21 @@ import sys
 
 pygame.init()
 
-# tela
+
 LARGURA, ALTURA = 700, 450
 tela = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption("Adivinhe o Número")
 
-# cores
+
 BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 CINZA = (200, 200, 200)
 VERDE = (0, 200, 0)
 
-# fonte
+
 fonte = pygame.font.SysFont(None, 40)
 
-# estado do jogo
+
 def novo_jogo():
     return {
         "num": random.randint(1, 1023),
@@ -29,7 +29,7 @@ def novo_jogo():
 
 estado = novo_jogo()
 
-# botões
+
 btn_mais1 = pygame.Rect(50, 250, 80, 50)
 btn_mais10 = pygame.Rect(150, 250, 80, 50)
 btn_mais100 = pygame.Rect(250, 250, 80, 50)
@@ -52,7 +52,7 @@ def desenhar():
     msg = fonte.render(estado["msg"], True, PRETO)
     tela.blit(msg, (180, 150))
 
-    # botões +
+   
     pygame.draw.rect(tela, CINZA, btn_mais1)
     pygame.draw.rect(tela, CINZA, btn_mais10)
     pygame.draw.rect(tela, CINZA, btn_mais100)
@@ -61,7 +61,7 @@ def desenhar():
     tela.blit(fonte.render("+10", True, PRETO), (155, 260))
     tela.blit(fonte.render("+100", True, PRETO), (250, 260))
 
-    # botões -
+    
     pygame.draw.rect(tela, CINZA, btn_menos1)
     pygame.draw.rect(tela, CINZA, btn_menos10)
     pygame.draw.rect(tela, CINZA, btn_menos100)
@@ -70,7 +70,7 @@ def desenhar():
     tela.blit(fonte.render("-10", True, PRETO), (155, 330))
     tela.blit(fonte.render("-100", True, PRETO), (245, 330))
 
-    # botão OK
+    
     pygame.draw.rect(tela, VERDE, btn_ok)
     tela.blit(fonte.render("OK", True, PRETO), (485, 300))
 
@@ -79,7 +79,7 @@ def desenhar():
 
     pygame.display.update()
 
-# loop principal
+
 while True:
     desenhar()
 
@@ -91,7 +91,7 @@ while True:
         if evento.type == pygame.MOUSEBUTTONDOWN:
             x, y = pygame.mouse.get_pos()
 
-            # + 
+           
             if btn_mais1.collidepoint(x, y):
                 estado["valor"] += 1
             elif btn_mais10.collidepoint(x, y):
@@ -99,7 +99,7 @@ while True:
             elif btn_mais100.collidepoint(x, y):
                 estado["valor"] += 100
 
-            # -
+           
             elif btn_menos1.collidepoint(x, y):
                 estado["valor"] -= 1
             elif btn_menos10.collidepoint(x, y):
@@ -107,7 +107,7 @@ while True:
             elif btn_menos100.collidepoint(x, y):
                 estado["valor"] -= 100
 
-            # OK
+           
             elif btn_ok.collidepoint(x, y):
                 estado["tentativas"] += 1
 
@@ -118,7 +118,7 @@ while True:
                 else:
                     estado["msg"] = f"Acertou em {estado['tentativas']}!"
 
-            # limitar valor
+        
             estado["valor"] = max(1, min(1023, estado["valor"]))
 
         if evento.type == pygame.KEYDOWN:

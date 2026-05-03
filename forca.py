@@ -4,20 +4,20 @@ import sys
 
 pygame.init()
 
-# tela
+
 LARGURA, ALTURA = 800, 600
 tela = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption("Jogo da Forca")
 
-# cores
+
 BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 
-# fonte
+
 fonte = pygame.font.SysFont(None, 50)
 fonte_peq = pygame.font.SysFont(None, 30)
 
-# palavras (tema: frutas)
+
 palavras = ["banana", "manga", "abacaxi", "morango", "laranja"]
 
 def novo_jogo():
@@ -36,11 +36,11 @@ estado = novo_jogo()
 def desenhar():
     tela.fill(BRANCO)
 
-    # palavra
+    
     texto = fonte.render(" ".join(estado["letras_descobertas"]), True, PRETO)
     tela.blit(texto, (200, 200))
 
-    # info
+   
     vidas = fonte_peq.render(f"Vidas: {estado['vidas']}", True, PRETO)
     tela.blit(vidas, (10, 10))
 
@@ -77,7 +77,7 @@ def verificar_fim():
         estado["msg"] = f"Perdeu! Palavra: {estado['palavra']} (R para reiniciar)"
         estado["fim"] = True
 
-# loop
+
 while True:
     desenhar()
 
@@ -88,7 +88,7 @@ while True:
 
         if evento.type == pygame.KEYDOWN:
 
-            # reiniciar
+            
             if estado["fim"]:
                 if evento.key == pygame.K_r:
                     estado = novo_jogo()
@@ -96,13 +96,13 @@ while True:
             else:
                 tecla = evento.unicode.lower()
 
-                # validação (somente letras)
+                
                 if tecla.isalpha() and len(tecla) == 1:
                     verificar_letra(tecla)
                     verificar_fim()
 
-                # chute da palavra inteira
-                elif tecla == "\r":  # ENTER
+                
+                elif tecla == "\r":  
                     chute = input("Digite a palavra no terminal: ")
 
                     if chute.isalpha():

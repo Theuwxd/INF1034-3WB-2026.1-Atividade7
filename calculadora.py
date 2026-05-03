@@ -3,26 +3,26 @@ import sys
 
 pygame.init()
 
-# tela
+
 LARGURA, ALTURA = 300, 500
 tela = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption("Calculadora")
 
-# cores
+
 BRANCO = (255, 255, 255)
 CINZA = (200, 200, 200)
 PRETO = (0, 0, 0)
 LARANJA = (255, 165, 0)
 
-# fonte
+
 fonte = pygame.font.SysFont(None, 40)
 
-# estado da calculadora
+
 valor_atual = ""
 resultado = None
 operador = None
 
-# botões (texto, posição)
+
 botoes = [
     ("7", (0, 200)), ("8", (75, 200)), ("9", (150, 200)), ("/", (225, 200)),
     ("4", (0, 275)), ("5", (75, 275)), ("6", (150, 275)), ("*", (225, 275)),
@@ -33,12 +33,12 @@ botoes = [
 def desenhar():
     tela.fill(BRANCO)
 
-    # display
+    
     pygame.draw.rect(tela, CINZA, (0, 0, 300, 150))
     texto = fonte.render(str(valor_atual if valor_atual else resultado if resultado else 0), True, PRETO)
     tela.blit(texto, (10, 50))
 
-    # botões
+    
     for texto_btn, pos in botoes:
         rect = pygame.Rect(pos[0], pos[1], 75, 75)
         pygame.draw.rect(tela, LARANJA if texto_btn in "+-*/=" else CINZA, rect)
@@ -69,7 +69,7 @@ def calcular():
 
     valor_atual = ""
 
-# loop
+
 while True:
     desenhar()
 

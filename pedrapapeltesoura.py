@@ -4,29 +4,29 @@ import sys
 
 pygame.init()
 
-# tela
+
 largura, altura = 800, 600
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("Pedra, Papel e Tesoura")
 
-# cores
+
 branco = (255, 255, 255)
 preto = (0, 0, 0)
 
-# fonte
+
 fonte = pygame.font.SysFont(None, 40)
 
-# carregar imagens
+
 pedra_img = pygame.image.load("pedra.png")
 papel_img = pygame.image.load("papel.png")
 tesoura_img = pygame.image.load("tesoura.png")
 
-# redimensionar
+
 pedra_img = pygame.transform.scale(pedra_img, (150, 150))
 papel_img = pygame.transform.scale(papel_img, (150, 150))
 tesoura_img = pygame.transform.scale(tesoura_img, (150, 150))
 
-# posições
+
 pedra_rect = pedra_img.get_rect(topleft=(100, 400))
 papel_rect = papel_img.get_rect(topleft=(325, 400))
 tesoura_rect = tesoura_img.get_rect(topleft=(550, 400))
@@ -40,12 +40,12 @@ jogada_pc = ""
 def desenhar():
     tela.fill(branco)
 
-    # desenhar imagens
+    
     tela.blit(pedra_img, pedra_rect)
     tela.blit(papel_img, papel_rect)
     tela.blit(tesoura_img, tesoura_rect)
 
-    # textos
+    
     texto = fonte.render("Escolha sua jogada:", True, preto)
     tela.blit(texto, (280, 50))
 
@@ -75,7 +75,7 @@ def verificar_vencedor(jogador, pc):
         pontuacao -= 1
         return "Você perdeu!"
 
-# loop principal
+
 while True:
     desenhar()
 
